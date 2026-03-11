@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent-gold: #d4af37;
+  --color-accent-chrome: #e5e4e2;
+  --color-bg-dark: #050505;
+  --color-secondary: #a0a0a0;
+
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg-dark: #050505;
+    --accent-gold: #d4af37;
+    --accent-chrome: #e5e4e2;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+  }
+
+  body {
+    @apply bg-bg-dark text-white font-inter antialiased overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  .heading-font {
+    @apply font-orbitron tracking-widest uppercase;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl transition-all duration-300;
+  }
+
+  .gold-gradient {
+    @apply bg-gradient-to-tr from-[#d4af37] via-[#f9f295] to-[#d4af37] bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl text-accent-gold font-bold transition-all hover:scale-105 active:scale-95 hover:bg-white/10;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-3 border border-accent-gold/50 rounded-2xl font-bold transition-all hover:bg-accent-gold/10 hover:scale-105 active:scale-95;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700;900&display=swap');
+
+canvas {
+  touch-action: none;
+}
+
+/* Custom Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af3766;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
