@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { fetchTopRepos } from '../utils/github';
 import { motion } from 'framer-motion';
-import { ExternalLink, Star, Code2, Cpu, Globe } from 'lucide-react';
+import { ExternalLink, Star, Code2 } from 'lucide-react';
 
 const ProjectSlider = () => {
+    const MotionDiv = motion.div;
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -26,7 +27,7 @@ const ProjectSlider = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
                 <div>
                     <h2 className="text-4xl md:text-6xl font-black mb-4 gold-gradient">CORE SYSTEMS</h2>
-                    <p className="text-secondary max-w-md">Selected prototypes and production-ready modules from my GitHub.</p>
+                    <p className="text-secondary max-w-md">Selected projects automatically synced from my GitHub profile.</p>
                 </div>
                 <div className="flex gap-4">
                     <div className="px-6 py-3 glass-card text-xs font-bold font-orbitron text-accent-gold">
@@ -36,8 +37,10 @@ const ProjectSlider = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {projects.map((project, index) => (
-                    <motion.div
+                {projects.length === 0 ? (
+                    <div className="glass-card p-10 text-secondary md:col-span-2 lg:col-span-3">Unable to load repositories right now. Please check back soon.</div>
+                ) : projects.map((project, index) => (
+                    <MotionDiv
                         key={project.id}
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +93,7 @@ const ProjectSlider = () => {
                                 <ExternalLink size={16} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                             </a>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 ))}
             </div>
         </section>

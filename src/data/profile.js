@@ -1,0 +1,27 @@
+export const profileData = {
+  fullName: 'NGHOMSI FEUKOUO RAVEL',
+  username: 'Archlord12345',
+  title: 'Étudiant en filière informatique • Développeur Fullstack',
+  bio: "Développeur fullstack avec des notions de création d'agents IA via n8n et créateur du groupe d'étudiants KERNEL FORGE.",
+  email: 'ravel.nghomsi@facsciences-uy1.cm',
+  location: 'Yaoundé, Cameroun',
+  followers: 10,
+  following: 38,
+  repos: 76,
+  stars: 26,
+  organization: '@KERNEL-FORGE',
+  links: [
+    { label: 'GitHub', url: 'https://github.com/Archlord12345' },
+    { label: 'Kernel Workflow', url: 'https://kernel-workflow-1.vercel.app' },
+    { label: 'Portfolio Lovable', url: 'https://ravelnghomsi.lovable.app' },
+    { label: 'Flickr', url: 'https://www.flickr.com/people/204029326@N02' },
+    { label: 'Sketchfab', url: 'https://sketchfab.com/ravel.nghomsi' },
+    { label: 'Pro Informatique', url: 'https://pro-informatique.vercel.app/' },
+  ],
+  highlights: [
+    'Créateur du groupe étudiant KERNEL FORGE',
+    '548 contributions sur la dernière année',
+    'Activité orientée Pull Requests, code review et delivery',
+    'Projets populaires: CHAT DU NOYAU, RENCONTRE DU NOYAU, TAKYMED',
+  ],
+};
