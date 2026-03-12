@@ -1,103 +1,107 @@
 import React, { useEffect, useState } from 'react';
+import { motion as Motion } from 'framer-motion';
+import { Star, Code2, ArrowUpRight, Github, Terminal } from 'lucide-react';
 import { fetchTopRepos } from '../utils/github';
-import { motion } from 'framer-motion';
-import { ExternalLink, Star, Code2 } from 'lucide-react';
 
 const ProjectSlider = () => {
-    const MotionDiv = motion.div;
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetchTopRepos().then(data => {
-            setProjects(data);
-            setLoading(false);
-        });
-    }, []);
+  useEffect(() => {
+    fetchTopRepos().then(data => {
+      setProjects(data);
+      setLoading(false);
+    });
+  }, []);
 
-    if (loading) return (
-        <div className="flex flex-col items-center justify-center py-40">
-            <div className="w-16 h-16 border-4 border-accent-gold/20 border-t-accent-gold rounded-full animate-spin" />
-            <span className="mt-6 text-accent-gold font-orbitron tracking-[0.5em] text-xs">DECODING REPOSITORIES...</span>
-        </div>
-    );
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center py-40">
+      <Motion.div
+        animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        className="w-12 h-12 border-2 border-accent-gold/10 border-t-accent-gold rounded-full"
+      />
+      <span className="mt-10 text-accent-gold font-black tracking-[0.5em] text-[10px] animate-pulse uppercase">
+        Accès aux archives système...
+      </span>
+    </div>
+  );
 
-    return (
-        <section className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-                <div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-4 gold-gradient">CORE SYSTEMS</h2>
-                    <p className="text-secondary max-w-md">Selected projects automatically synced from my GitHub profile.</p>
-                </div>
-                <div className="flex gap-4">
-                    <div className="px-6 py-3 glass-card text-xs font-bold font-orbitron text-accent-gold">
-                        {projects.length} PROJECTS SYNCED
-                    </div>
-                </div>
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+      {projects.map((project, index) => (
+        <Motion.div
+          key={project.id}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="group"
+        >
+          <div className="glass-card-gold h-full p-8 flex flex-col group-hover:-translate-y-3 transition-all duration-500 border-white/5">
+            {/* Header */}
+            <div className="flex justify-between items-start mb-10">
+              <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-accent-gold group-hover:bg-accent-gold group-hover:text-bg-dark transition-all duration-700 group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                <Code2 size={32} strokeWidth={1.5} />
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.03] text-accent-gold text-xs font-black border border-white/5">
+                <Star size={14} fill="currentColor" />
+                {project.stars}
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {projects.length === 0 ? (
-                    <div className="glass-card p-10 text-secondary md:col-span-2 lg:col-span-3">Unable to load repositories right now. Please check back soon.</div>
-                ) : projects.map((project, index) => (
-                    <MotionDiv
-                        key={project.id}
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1, duration: 0.6 }}
-                        className="group relative"
-                    >
-                        {/* Hover Glow */}
-                        <div className="absolute inset-x-0 -bottom-1 h-0 group-hover:h-full bg-accent-gold/5 blur-2xl transition-all duration-500 rounded-3xl" />
-
-                        <div className="glass-card p-8 h-full flex flex-col border-white/5 group-hover:border-accent-gold/30 group-hover:bg-white/[0.08] transition-all relative z-10">
-                            <div className="flex justify-between items-start mb-10">
-                                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent-gold group-hover:scale-110 transition-transform">
-                                    <Code2 size={24} />
-                                </div>
-                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-gold/10 text-accent-gold text-xs font-bold border border-accent-gold/20">
-                                    <Star size={12} fill="currentColor" />
-                                    {project.stars}
-                                </div>
-                            </div>
-
-                            <h3 className="text-2xl font-bold mb-4 tracking-tight group-hover:text-accent-gold transition-colors">
-                                {project.name.replace(/-/g, ' ')}
-                            </h3>
-
-                            <p className="text-secondary/80 text-sm leading-relaxed mb-10 flex-grow font-light">
-                                {project.description || "A deep-dive into autonomous architectures and high-performance engineering."}
-                            </p>
-
-                            <div className="flex flex-wrap gap-2 mb-10">
-                                {project.topics.slice(0, 3).map(topic => (
-                                    <span key={topic} className="text-[9px] font-black px-3 py-1 rounded-md bg-white/5 text-accent-chrome border border-white/10 uppercase tracking-widest">
-                                        {topic}
-                                    </span>
-                                ))}
-                                {project.language && (
-                                    <span className="text-[9px] font-black px-3 py-1 rounded-md bg-accent-gold/5 text-accent-gold border border-accent-gold/20 uppercase tracking-widest">
-                                        {project.language}
-                                    </span>
-                                )}
-                            </div>
-
-                            <a
-                                href={project.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-between group/link py-3 border-t border-white/5 hover:text-accent-gold transition-colors"
-                            >
-                                <span className="text-xs font-black tracking-[0.2em]">INITIALIZE SOURCE</span>
-                                <ExternalLink size={16} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                            </a>
-                        </div>
-                    </MotionDiv>
-                ))}
+            {/* Content */}
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-3">
+                <Terminal size={14} className="text-accent-gold/40" />
+                <span className="text-[10px] font-black text-secondary/60 uppercase tracking-widest">Repository {index + 1}</span>
+              </div>
+              <h3 className="text-2xl font-black mb-4 tracking-tight group-hover:text-accent-gold transition-colors font-orbitron uppercase leading-tight">
+                {project.name.replace(/-/g, ' ')}
+              </h3>
+              <p className="text-secondary/70 text-sm leading-relaxed line-clamp-3 font-medium">
+                {project.description || "Un projet ambitieux développé avec précision au sein de l'écosystème KERNEL FORGE pour repousser les limites technologiques."}
+              </p>
             </div>
-        </section>
-    );
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-10 mt-auto">
+              {project.topics.length > 0 ? project.topics.slice(0, 3).map(topic => (
+                <span key={topic} className="px-3 py-1 rounded-lg bg-white/5 border border-white/5 text-[9px] font-black uppercase text-accent-chrome tracking-widest">
+                  {topic}
+                </span>
+              )) : (
+                <span className="px-3 py-1 rounded-lg bg-white/5 border border-white/5 text-[9px] font-black uppercase text-accent-chrome tracking-widest">
+                  Engineering
+                </span>
+              )}
+              {project.language && (
+                <span className="px-3 py-1 rounded-lg bg-accent-gold/10 border border-accent-gold/20 text-[9px] font-black uppercase text-accent-gold tracking-widest">
+                  {project.language}
+                </span>
+              )}
+            </div>
+
+            {/* Footer Action */}
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between pt-6 border-t border-white/5 group/btn"
+            >
+              <div className="flex items-center gap-3">
+                <Github size={18} className="text-secondary group-hover/btn:text-accent-gold transition-colors" />
+                <span className="text-[11px] font-black tracking-[0.2em] uppercase group-hover/btn:text-white transition-colors">
+                  Initialiser le code source
+                </span>
+              </div>
+              <ArrowUpRight size={20} className="text-accent-gold opacity-40 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all" />
+            </a>
+          </div>
+        </Motion.div>
+      ))}
+    </div>
+  );
 };
 
 export default ProjectSlider;
