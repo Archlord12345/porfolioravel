@@ -68,11 +68,9 @@ const HomePage = ({ navigate }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black mb-6 sm:mb-8 gold-gradient leading-none tracking-tighter px-4"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-8 gold-gradient leading-tight tracking-tight px-2 sm:px-4 max-w-full"
           >
-            {mergedProfile.fullName.split(' ').map((word, i) => (
-              <span key={i} className="block sm:block md:inline mr-0 md:mr-4 last:mr-0">{word}</span>
-            ))}
+            {mergedProfile.fullName}
           </Motion.h1>
 
           <Motion.p
