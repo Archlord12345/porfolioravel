@@ -3,6 +3,8 @@ import { motion as Motion } from 'framer-motion';
 import { ChevronDown, ExternalLink, MapPin, Github, Briefcase, Sparkles, ArrowRight } from 'lucide-react';
 import Hero3D from '../components/Hero3D';
 import SkillsTree from '../components/SkillsTree';
+import TechSpline from '../components/TechSpline';
+import { TechIconsGrid, TechBadgesSection } from '../components/TechIcons';
 import { fetchProfile } from '../utils/github';
 import { profileData } from '../data/profile';
 import avatar from '../photo/ravel.png';
@@ -120,11 +122,70 @@ const HomePage = ({ navigate }) => {
         </Motion.div>
       </section>
 
+      {/* Tech Spline Visualization */}
+      <section className="relative z-10 py-12 sm:py-16 md:py-24 px-4 sm:px-6 border-t border-white/5 bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto">
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black gold-gradient uppercase mb-3 sm:mb-4">
+              Univers Technologique
+            </h2>
+            <p className="text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              Explorer l'écosystème dynamique de mes compétences techniques
+            </p>
+          </Motion.div>
+          <TechSpline />
+        </div>
+      </section>
+
+      {/* Tech Icons Grid */}
+      <section className="relative z-10 py-12 sm:py-16 md:py-24 px-4 sm:px-6 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase mb-2 font-orbitron">
+              Domaines de Compétence
+            </h3>
+            <div className="h-1 w-20 bg-accent-gold rounded-full" />
+          </Motion.div>
+          <TechIconsGrid />
+        </div>
+      </section>
+
       {/* Skills Section with distinct glass transition */}
       <section className="relative z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-dark to-bg-dark pointer-events-none" />
         <div className="relative py-10">
           <SkillsTree />
+        </div>
+      </section>
+
+      {/* Tech Badges Float */}
+      <section className="relative z-10 py-12 sm:py-16 md:py-24 px-4 sm:px-6 border-t border-white/5 bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto">
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-8 sm:mb-12"
+          >
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase mb-2 font-orbitron">
+              Stack Technologique
+            </h3>
+            <p className="text-secondary text-sm sm:text-base">Technologies et outils que j'utilise quotidiennement</p>
+          </Motion.div>
+          <TechBadgesSection />
         </div>
       </section>
 
