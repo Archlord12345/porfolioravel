@@ -7,7 +7,7 @@
   --color-accent-chrome: #e5e4e2;
   --color-bg-dark: #050505;
   --color-bg-card: #0a0a0a;
-  --color-secondary: #a0a0a0;
+  --color-secondary: #c5c5c5;
 
   --font-orbitron: "Orbitron", sans-serif;
   --font-inter: "Inter", sans-serif;
@@ -20,7 +20,15 @@
     --accent-gold-rgb: 212, 175, 55;
     --accent-chrome: #e5e4e2;
     --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
+    --text-secondary: #c5c5c5;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -28,10 +36,19 @@
     background-image:
       radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   h1, h2, h3, h4, .font-heading {
     @apply font-orbitron tracking-tighter;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  p, span, div {
+    text-rendering: optimizeLegibility;
   }
 }
 
