@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  Code2,
-  Cpu,
-  Bot,
-  Zap,
-  Database,
-  Globe,
-  Layers,
-  Terminal,
-  GitBranch,
-  Smartphone,
-} from 'lucide-react';
+import { Code as Code2, Cpu, Bot, Zap, Database, Globe, Layers, Terminal, GitBranch, Smartphone } from 'lucide-react';
 
 const TechIconsGrid = () => {
   const icons = [
