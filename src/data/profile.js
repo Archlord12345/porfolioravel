@@ -47,6 +47,24 @@ export const profileData = {
       skills: ["Node.js", "Express", "Firebase", "PostgreSQL", "Docker", "Vercel / Netlify", "Git / GitHub Actions"]
     }
   ],
+  formation: [
+    {
+      title: "Fullstack Web Development",
+      institution: "Université de Yaoundé I",
+      period: "En cours (Dernière année)",
+      description: "Spécialisation en ingénierie logicielle et systèmes distribués.",
+      icon: "GraduationCap"
+    }
+  ],
+  experience: [
+    {
+      title: "Fondateur & Lead Developer",
+      company: "KERNEL FORGE",
+      period: "2023 - Présent",
+      description: "Direction technique et développement de solutions d'automatisation IA et d'expériences 3D immersives.",
+      icon: "Briefcase"
+    }
+  ],
   certifications: [
     {
       title: "Spécialiste n8n Workflow Automation",
@@ -65,12 +83,6 @@ export const profileData = {
       issuer: "HackerRank Professional",
       date: "2023",
       icon: "Code"
-    },
-    {
-      title: "Fullstack Web Development",
-      issuer: "Université de Yaoundé I",
-      date: "En cours (Dernière année)",
-      icon: "ShieldCheck"
     }
   ]
 };
