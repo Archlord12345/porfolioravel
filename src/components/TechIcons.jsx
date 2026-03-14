@@ -17,28 +17,31 @@ const TechIconsGrid = () => {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
-      {icons.map(({ Icon, label, color }, idx) => (
-        <div
-          key={idx}
-          className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/20 transition-all duration-300 group cursor-default"
-        >
+      {icons.map((item, idx) => {
+        const Icon = item.Icon;
+        return (
           <div
-            className="p-3 rounded-lg bg-white/[0.05] group-hover:bg-white/10 transition-all duration-300"
-            style={{
-              boxShadow: `0 0 15px ${color}22`,
-            }}
+            key={idx}
+            className="flex flex-col items-center gap-2 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/20 transition-all duration-300 group cursor-default"
           >
-            <Icon
-              size={24}
-              style={{ color }}
-              className="group-hover:scale-110 transition-transform duration-300"
-            />
+            <div
+              className="p-3 rounded-lg bg-white/[0.05] group-hover:bg-white/10 transition-all duration-300"
+              style={{
+                boxShadow: `0 0 15px ${item.color}22`,
+              }}
+            >
+              <Icon
+                size={24}
+                style={{ color: item.color }}
+                className="group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <span className="text-[10px] sm:text-xs font-bold text-secondary text-center uppercase tracking-widest">
+              {item.label}
+            </span>
           </div>
-          <span className="text-[10px] sm:text-xs font-bold text-secondary text-center uppercase tracking-widest">
-            {label}
-          </span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

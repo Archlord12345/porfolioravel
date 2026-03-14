@@ -1,9 +1,9 @@
-import React, { useMemo, useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Sparkles, PerspectiveCamera, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
-const FloatingIcon = ({ position, scale, speed, icon }) => {
+const FloatingIcon = ({ position, scale, speed }) => {
   const meshRef = useRef();
 
   useFrame((state) => {
@@ -14,8 +14,10 @@ const FloatingIcon = ({ position, scale, speed, icon }) => {
     meshRef.current.position.y += Math.sin(t * speed) * 0.003;
   });
 
-  const colors = ['#d4af37', '#00ff88', '#0088ff', '#ff0088', '#ffff00'];
-  const color = colors[Math.floor(Math.random() * colors.length)];
+  const [color] = useState(() => {
+    const colors = ['#d4af37', '#00ff88', '#0088ff', '#ff0088', '#ffff00'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  });
 
   return (
     <Float speed={speed} rotationIntensity={0.3} floatIntensity={0.4}>
@@ -62,7 +64,7 @@ const OrbitingElement = ({ radius, speed, index, total }) => {
 
 const DynamicSplineField = ({ isMobile }) => {
   const groupRef = useRef();
-  const elements = useMemo(() => {
+  const [elements] = useState(() => {
     return Array.from({ length: isMobile ? 6 : 12 }, (_, i) => ({
       id: i,
       position: [
@@ -73,7 +75,7 @@ const DynamicSplineField = ({ isMobile }) => {
       scale: Math.random() * 0.4 + 0.2,
       speed: Math.random() * 0.8 + 0.3,
     }));
-  }, [isMobile]);
+  });
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -98,7 +100,6 @@ const DynamicSplineField = ({ isMobile }) => {
           position={el.position}
           scale={el.scale}
           speed={el.speed}
-          icon={el.id}
         />
       ))}
       {Array.from({ length: isMobile ? 4 : 8 }, (_, i) => (
