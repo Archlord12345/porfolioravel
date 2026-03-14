@@ -7,6 +7,7 @@ import TechSpline from '../components/TechSpline';
 import { TechIconsGrid, TechBadgesSection } from '../components/TechIcons';
 import { fetchProfile } from '../utils/github';
 import { profileData } from '../data/profile';
+import avatar from '../photo/ravel.png';
 
 const HomePage = ({ navigate }) => {
   const [profile, setProfile] = useState(null);
@@ -35,6 +36,23 @@ const HomePage = ({ navigate }) => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 text-center max-w-7xl mx-auto mt-20"
         >
+          {/* Profile Photo */}
+          <Motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mb-8 flex justify-center"
+          >
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-accent-gold to-yellow-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+              <img
+                src={avatar}
+                alt={mergedProfile.fullName}
+                className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-accent-gold/50 object-cover shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+              />
+            </div>
+          </Motion.div>
+
           <Motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
