@@ -7,7 +7,6 @@ import TechSpline from '../components/TechSpline';
 import { TechIconsGrid, TechBadgesSection } from '../components/TechIcons';
 import { fetchProfile } from '../utils/github';
 import { profileData } from '../data/profile';
-import avatar from '../photo/ravel.png';
 
 const HomePage = ({ navigate }) => {
   const [profile, setProfile] = useState(null);
@@ -26,33 +25,16 @@ const HomePage = ({ navigate }) => {
 
   return (
     <div className="relative w-full">
-      <Hero3D />
+      <Hero3D skills={profileData.skillsHierarchy} navigate={navigate} />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden pointer-events-none">
         <Motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 text-center max-w-7xl mx-auto"
+          className="relative z-10 text-center max-w-7xl mx-auto mt-20"
         >
-          {/* Avatar Container */}
-          <div className="relative w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 mx-auto mb-8 sm:mb-12 group">
-            <div className="absolute inset-0 bg-accent-gold/20 rounded-full blur-3xl group-hover:bg-accent-gold/40 transition-colors duration-1000 animate-pulse" />
-            <div className="relative w-full h-full p-1 sm:p-1.5 rounded-full bg-gradient-to-tr from-accent-gold via-white/20 to-accent-gold shadow-2xl overflow-hidden">
-              <div className="w-full h-full rounded-full overflow-hidden bg-bg-dark border-2 sm:border-4 border-bg-dark/50">
-                <img
-                  src={avatar}
-                  alt={mergedProfile.fullName}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-              </div>
-            </div>
-            <div className="absolute -bottom-2 sm:-bottom-4 right-2 sm:right-4 bg-gradient-to-br from-accent-gold to-[#f9f295] text-bg-dark p-2.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl border border-white/20 transform group-hover:rotate-12 transition-transform duration-500">
-              <Briefcase size={20} className="sm:w-7 sm:h-7" />
-            </div>
-          </div>
-
           <Motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,7 +70,7 @@ const HomePage = ({ navigate }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 px-4"
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 px-4 pointer-events-auto"
           >
             <button
               onClick={() => navigate('#/projects')}
@@ -112,7 +94,7 @@ const HomePage = ({ navigate }) => {
         <Motion.div
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 text-accent-gold/30 cursor-pointer touch-manipulation hidden sm:flex"
+          className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 text-accent-gold/30 cursor-pointer touch-manipulation hidden sm:flex pointer-events-auto"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
           <div className="flex flex-col items-center gap-2">
