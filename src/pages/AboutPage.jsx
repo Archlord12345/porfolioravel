@@ -2,7 +2,8 @@ import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import { profileData } from '../data/profile';
 import Certifications from '../components/Certifications';
-import { Award, User, Target, Zap } from 'lucide-react';
+import Parcours from '../components/Parcours';
+import { Award, User, Target, Zap, History } from 'lucide-react';
 
 const AboutPage = () => (
   <section className="max-w-6xl mx-auto py-12 px-6">
@@ -11,9 +12,9 @@ const AboutPage = () => (
       animate={{ opacity: 1, y: 0 }}
       className="mb-20 text-center"
     >
-      <h2 className="text-4xl md:text-6xl font-black mb-4 gold-gradient uppercase tracking-tighter">Profil & Vision</h2>
+      <h2 className="text-4xl md:text-6xl font-black mb-4 gold-gradient uppercase tracking-tighter">Présentation</h2>
       <p className="text-secondary max-w-2xl mx-auto text-lg leading-relaxed">
-        Une immersion dans mon parcours technologique, mes engagements et les certifications qui valident mon expertise.
+        Découvrez mon parcours académique, mes expériences professionnelles et ma vision du développement.
       </p>
     </Motion.div>
 
@@ -28,13 +29,13 @@ const AboutPage = () => (
           <div className="w-12 h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center text-accent-gold">
             <User size={24} />
           </div>
-          <h3 className="text-2xl font-black font-orbitron uppercase">Biographie</h3>
+          <h3 className="text-2xl font-black font-orbitron uppercase tracking-widest">Qui suis-je ?</h3>
         </div>
         <p className="text-secondary text-lg leading-relaxed">
           Je suis <span className="text-white font-bold">{profileData.fullName}</span>, un développeur passionné par l'innovation logicielle et l'intelligence artificielle. Actuellement étudiant à l'Université de Yaoundé I, je consacre mon temps à explorer les frontières du développement Fullstack et de l'automatisation.
         </p>
         <p className="text-secondary text-lg leading-relaxed">
-          Mon approche combine rigueur technique et créativité visuelle. À travers <span className="text-accent-gold font-bold">KERNEL FORGE</span>, je cherche à bâtir une communauté d'excellence technologique au Cameroun.
+          Mon approche combine rigueur technique et créativité visuelle. À travers <span className="text-accent-gold font-bold">KERNEL FORGE</span>, je cherche à bâtir une communauté d'excellence technologique.
         </p>
       </Motion.div>
 
@@ -48,7 +49,7 @@ const AboutPage = () => (
           <div className="w-12 h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center text-accent-gold">
             <Target size={24} />
           </div>
-          <h3 className="text-2xl font-black font-orbitron uppercase">Focus</h3>
+          <h3 className="text-2xl font-black font-orbitron uppercase tracking-widest">Focus</h3>
         </div>
         <ul className="space-y-4">
           {profileData.highlights.map((item, idx) => (
@@ -59,6 +60,17 @@ const AboutPage = () => (
           ))}
         </ul>
       </Motion.div>
+    </div>
+
+    {/* Section Parcours */}
+    <div className="mb-24">
+      <div className="flex items-center gap-4 mb-12">
+        <div className="w-12 h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center text-accent-gold">
+          <History size={24} />
+        </div>
+        <h3 className="text-3xl font-black font-orbitron uppercase tracking-widest gold-gradient">Parcours académique & Expérience</h3>
+      </div>
+      <Parcours />
     </div>
 
     <div className="mb-12">
